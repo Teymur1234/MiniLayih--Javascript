@@ -71,70 +71,69 @@ span{
 .hamburgermenu i{
     font-size: 20px;
 }
-.slider{
-    width: 100%;
+.slide-container{
     height: 100vh;
-    overflow: hidden;
-
-}
-.slider-items{
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.slide{
-    min-width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100%;
-    display: flex;
-    box-sizing: border-box; 
-    align-items: center;
-    justify-content: flex-start;
-}
-.slide div{
+    overflow: hidden;
+   }
+   .slides{
+       height: 100%;
+       width: 100%;
+       display: flex;
+   }
+   .slide{
+       min-width: 100%;
+       box-sizing: border-box;
+       background-size: cover;
+       display: flex;
+       align-items: center;
+       justify-content: flex-start; 
+   }
+   .slide div{
     margin-left: 170px;
-    margin-top: -70px;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     gap: 30px;
-}
-.slide div h2{
+   }
+   .slide div h1{
+       font-size: 50px;
+       color: white;
+   }
+   .slide div button{
+        width: 180px;
+        height: 50px;
+        border-radius: 30px;
+        font-size: 20px;
+        background-color: #717FE0;
+        color: white;
+        border: none;
+   }
+   .slide div button:hover{
+       background-color: #001D38;
+   
+   }
+   .slide h2{
     font-size: 40px;
-}
-.slide div h1{
-    font-size: 60px;
-}
-.slide div button{
-    width: 180px;
-    height: 50px;
-    border-radius: 30px;
-    font-size: 20px;
-    background-color: #717FE0;
-    color: white;
-    border: none;
-}
-.slide div button:hover{
-    background-color: black;
-}
-.slider-items i{
+   }
+   .slide-container i{
     cursor: pointer;
     font-size: 60px;
     display: none;
     color: gray;
+    z-index: 10;
 }
 .right-arrow{
     position: absolute;
+    top: 380px;
     right: 80px;
+    z-index: 10;
 }
 .left-arrow{
     position: absolute;
+    top: 380px;
     left: 80px;
-}
-.slide i:hover{
-    color: #717FE0;
+    z-index: 10;
 }
 .menulink{
     text-decoration: none;
@@ -144,6 +143,60 @@ span{
 .menucontainer{
     padding: 15px;
     list-style-type: none;
+}
+.container{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cards{
+    width: 78%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.card{
+    border: 1px solid gray;
+    cursor: pointer;
+    width: 350px;
+    background-size: cover;
+    height: 230px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    transition: 1s;
+}
+.card div:last-child{
+    width: 100%;
+    opacity: 0;
+    height: 100%;
+    color: white;
+    transition: 1s;
+}
+.salam div{
+    margin-top: 30px;
+    margin-left: 30px; 
+    z-index: 2000;
+    color: white;
+    display: block;
+    height: max-content;
+    width: max-content;
+}
+.card div:first-child{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.card:hover div:first-child{
+    display: none;
+    transition: 1s;
+
+}
+.card:hover .salam{
+    display: block; 
+    opacity: 0.8;
+    background-color: #8591DE;
 }
 @media only screen and (max-width: 450px){
     nav{

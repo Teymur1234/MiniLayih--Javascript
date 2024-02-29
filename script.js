@@ -29,7 +29,6 @@ hamburgerMenu.addEventListener("click", () => {
 const nav1=document.getElementById("nav")
 function navScroll() {
     let next=window.pageYOffset
-    console.log(next);
     if (next!==0) {
         nav1.style.backgroundColor="white"
     }
@@ -38,54 +37,54 @@ function navScroll() {
     }
 }
 window.addEventListener("scroll",navScroll)
-const slider=document.getElementById("slider1")
-const sliderItems=document.getElementById("slider-items1")
 const slide=document.querySelectorAll(".slide")
-let currentSlide=0  
+const containerSlide=document.querySelector(".slide-container")
+const slides=document.querySelector(".slides")
+const nextSlide=document.getElementById("left-arrow")
+const previousSlide=document.getElementById("right-arrow")
+let currentIndex=0
 let interval
 function next() {
-    if (currentSlide<slide.length-1) {
-        currentSlide++
+    if (currentIndex<slide.length-1) {
+        currentIndex++
     }
     else{
-        currentSlide=0
+        currentIndex=0
     }
     updateSlider()
 }
 function previous() {
-    if (currentSlide>0) {
-        currentSlide-=1
+    if (currentIndex>0) {
+        currentIndex++
     }
     else{
-        currentSlide=slide.length-1
+        currentIndex=slide.length-1
     }
     updateSlider()
 }
 function updateSlider() {
-    const transformvalue=-currentSlide*100 +"%"
-    sliderItems.style.transform=`translateX(${transformvalue})`
+    const transformvalue=-currentIndex*100 +"%"
+    slides.style.transform=`translateX(${transformvalue})`
 }
 function startAutoPlay() {
     interval=setInterval(()=>{
-        if (currentSlide<slide.length-1) {
-            currentSlide++
+        if (currentIndex<slide.length-1) {
+            currentIndex++
         }
         else{
-            currentSlide=0
+            currentIndex=0
         }
         updateSlider()
     },3000)
 }
-const previousSlide=document.getElementById("previousslide")
-const nextSlide=document.getElementById("nextslide")
-slider.addEventListener("mouseover",()=>{
-    previousSlide.style.display="block"
-    nextSlide.style.display="block"
-})
-slider.addEventListener("mouseleave",()=>{
-    previousSlide.style.display="none"
-    nextSlide.style.display="none"
+startAutoPlay()
+nextSlide.addEventListener("click",()=>{
+    if (currentIndex<slide.length-1) {
+        currentIndex++
+    }
+    else{
+        currentIndex=0
+    }
+    updateSlider()
 })
 previousSlide.addEventListener("click",previous)
-nextSlide.addEventListener("click",next)
-startAutoPlay()

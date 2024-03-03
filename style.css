@@ -6,7 +6,7 @@
     position: fixed;
     width: 100%;
     height: max-content;
-    z-index: 10;
+    z-index: 1000;
 }
 nav{
     width: 100%;
@@ -52,7 +52,7 @@ nav img{
     gap: 80px;
     justify-content: space-between;
 }
-span{
+#nav1 span{
     background-color: #717FE0;
     width: 12px;
     height: 12px;
@@ -154,6 +154,7 @@ span{
 .cards{
     width: 78%;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-around;
 }
@@ -162,47 +163,453 @@ span{
     cursor: pointer;
     width: 350px;
     background-size: cover;
-    height: 230px;
+    height: 270px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    transition: 1s;
+
 }
-.card div:last-child{
+.card div{
     width: 100%;
-    opacity: 0;
     height: 100%;
-    color: white;
-    transition: 1s;
 }
-.salam div{
-    margin-top: 30px;
-    margin-left: 30px; 
-    z-index: 2000;
-    color: white;
-    display: block;
-    height: max-content;
-    width: max-content;
-}
-.card div:first-child{
+.card div{
     margin-top: 30px;
     margin-left: 30px;
 }
-.card:hover div:first-child{
-    display: none;
-    transition: 1s;
+.carts{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.carts h1{
+    margin-left: 168px;
+}
+.choices{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.carts ul{
+    display: flex;
+    justify-content: space-around;
+    gap: 80px;
+    list-style-type: none;
+}
+.carts ul li a{
+    text-decoration: none;
+    color: gray;
+}
+.carts ul li a{
+    display: flex;
+    flex-direction: column;
+}
+.active{
+    width: 30px;
+    height: 2px;
+    align-self: center;
+    background-color: gray;
+    opacity: 0;
+    transition: 0.7s;
+}
+.carts ul li:hover .active{
+    opacity: 1;
+}
+.carts ul li:hover .carts ul li a{
+    color: black;
+}
+.choices div{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px
+}
+.choices div a{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 20px;
+    border: 1px solid gray;
+}
+.choices div a:hover{
+    background-color: #717FE0;
+    color: white;
+}
+.card1 img{
+    width: 250px;
+    height: 300px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.card1 img:hover{
+    transform: scale(1.1);
+}
+.card1{
+    width: 300px;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
 
 }
-.card:hover .salam{
-    display: block; 
-    opacity: 0.8;
-    background-color: #8591DE;
+.info{
+    display: flex;
+    align-items: flex-start;
+}
+.go-to-product{
+    position: absolute;
+    width: 120px;
+    height: 40px;
+    margin-left: 67px;
+    border-radius: 30px;
+    border: none;
+    background-color: white;
+    z-index: -1;
+    transition: 1;
+}
+.go-to-product:hover{
+    background-color: black;
+    color: white;
+}
+.product-image{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.product-image:hover .go-to-product{
+    animation: totop 10s ease;
+}
+@keyframes totop{
+    0%{
+        bottom: 0px;
+    }
+    100%{
+        bottom: 30px;
+        z-index: 10;
+    }
+}
+.info i{
+    cursor: pointer;
+    align-self: flex-end;
+}
+#cart-items{
+    margin-top: 30px;
+    width: 80%;
+    align-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+#more-products{
+    width: 170px;
+    height: 50px;
+    align-self: center;
+    margin-bottom: 70px;
+    background-color: rgb(227, 224, 224);
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+}
+#more-products:hover{
+    background-color: black;
+    color: white;
+}
+#less-products{
+    width: 170px;
+    height: 50px;
+    align-self: center;
+    margin-bottom: 70px;
+    background-color: rgb(227, 224, 224);
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    display: none;
+}
+#less-products:hover{
+    background-color: black;
+    color: white;
+}
+.footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222222;
+    height: 400px;
+}
+.footer a{
+    text-decoration: none;
+    color: gray;
+    cursor: pointer;
+}
+.footer p{
+    color: gray;
+}
+.footer i{
+    color: gray;
+}
+.footpart1{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+.footparts{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+}
+.footicons{
+    display: flex;
+    width: 90px;
+    justify-content: space-between;
+}
+.footicons i:hover{
+    color: #717FE0;
+    cursor: pointer;
+}
+.footparts input{
+    border: none;
+    color: gray;
+    background-color: transparent;
+    border-bottom: 1px solid gray;
+    outline: none;
+}
+.footparts button{
+    cursor: pointer;
+    width: 160px;
+    height: 40px;
+    border-radius: 30px;
+    color: white;
+    border: none;
+    background-color: #717FE0;
+}
+.footparts button:hover{
+    background-color: white;
+    color: #717FE0;
+}
+.footparts input:focus{
+    transition: 1s;
+    border-bottom: 2px solid #717FE0;
+}
+#wishlist{
+    position: fixed;
+    z-index: 10000;
+    width: 1000px;
+    height: 100vh;
+    display: flex;
+    right: -1000px;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    align-items: center;
+    transition: 0.7s; 
+}
+#wishlist div:first-child{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    gap: 140px;
+}
+#wishlist div:first-child i{
+    cursor: pointer;
+    font-size: 22px;
+}
+#wishlist-items{
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.wish-product{
+    display: flex;
+    max-width: 100%;;
+    height: 100px;
+    border: none;
+}
+.wish-product img{
+    width: 70px;
+    height: 70px;
+}
+.basket{
+    position: fixed;
+    z-index: 10000;
+    width: 400px;
+    height: 100vh;
+    display: flex;
+    right: -400px;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    align-items: center;
+    transition: 0.7s;
+}
+.basket div:first-child{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    gap: 140px;
+}
+.basket div:first-child i{
+    cursor: pointer;
+    font-size: 22px;
+}
+.basket-items{
+    height: 60%;
+    width: 100%;
+}
+.price{
+    display: flex;
+    align-self: flex-start;
+    gap: 10px;
+    margin-left: 100px;
+}
+.buttons{
+    margin-top: 80px;
+}
+.buttons button{
+    cursor: pointer;
+    width: 150px;
+    height: 42px;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    border: none;
+}
+.buttons button:hover{
+    background-color: #717FE0;
+}
+.price span{
+    font-size: 25px;
+}
+.view-card{
+    margin-top: 30px;
+    width: 70%;
+    margin-left: 200px;
+    position: absolute;
+    height: 90vh;
+    display: flex;
+    border: 1px solid black;
+    z-index: 100;
+}
+.products-images{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+    align-items: center;
+}
+.products-images img{
+    border: 1px solid black;
+    width: 60px;
+    height: 80px;
+}
+.product-infos{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid black;
+}
+.product-infos h1{
+    display: none;
+}
+.cartImage{
+    /* margin-left: 20px; */
+    width: 70px;
+    height: 70px;
+}
+.cartProduct{
+    display: flex;
+    margin-top: -40px;
+    width: 100%;
+    height: 70px;
+    gap: 0px;
+}
+.div{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 70px;
+    margin-left: -30px;
+}
+.cartProduct h3{
+    width: 100px;
+}
+#deleting{
+    margin-left: 7px;
+    background-color: black;
+    color: white;
+}
+.buttons1 button{
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    background-color: white;
+    border: 1px solid gray;
+}
+.buttons1 span{
+    width: 700px;
+    height: 70px;
+    border: 1px solid gray;
+    font-size: 25px;
+    background-color: rgb(226, 218, 218);
+}
+.add-to-card{
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 30px;
+    border: none;
+    background-color: #717FE0;
+    color: white;
+}
+.add-to-card:hover{
+    background-color: black;
+    color: white;
+}
+.product-slider{
+    width: 50%;
+    height: 100%;
+    border: 1px solid black;
+    overflow: hidden;
+}
+.product-slides{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.product-slide{
+    min-width: 200%;
+    background-size: contain;
+    min-height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
 }
 @media only screen and (max-width: 450px){
     nav{
         justify-content: center;
         background-color: white;
     }
+    .cards{
+        flex-direction: column;
+    }
+    .card{
+        min-width: 95%;
+        max-height: 200px;
+        background-size: cover;
+    }
+  
 }
 @media only screen and (max-width: 600px){
     .slide div h1{
@@ -214,10 +621,39 @@ span{
     nav{
         background-color: white;
     }
+    .cards{
+        flex-direction: column;
+    }
+    .card{
+        min-width: 95%;
+        max-height: 300px;
+        background-size: cover;
+    }
+    .card:last-child{
+        background-size: cover;
+    }
+    .footpart1{
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    .footparts{
+        width: 90%!important;
+    }
 }
 @media only screen and (max-width: 777px){
     nav{
         background-color: white;
+    }
+    .cards{
+        flex-direction: column;
+    }
+    .card{
+        min-width: 95%;
+        height: 400px;
+        background-size: contain;
+    }
+    .card:last-child{
+        background-size: contain;
     }
 }
 @media only screen and (max-width: 991px){
@@ -240,7 +676,42 @@ span{
     nav{
         background-color: white;
     }
+    .cards{
+        margin-top: 20px;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 100%;
+    }
+    .card{
+        width: 45%;
+    }
+    .container{
+        height: max-content;
+    }
+    .footpart1{
+        margin-top: 60px;
+        width: 100%;
+        flex-wrap: wrap;
+        margin-left: 10px;
+    }
+    .footer{
+        height: max-content;
+    }
+    .footparts{
+        margin-bottom: 20px;
+        width: 40%;
+    }
 }
-@media only screen and (min-width: 992px) {
+@media only screen and (max-width: 1200px) {
+    .cards{
+        width: 90%;
+        gap: 50px;
+    }
+    .card{
+        min-width: 30%;
+    }
+}
+@media only screen and (min-width: 1200px) {
 
 }

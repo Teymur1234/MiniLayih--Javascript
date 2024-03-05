@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                 <button class="increase">+</button>
                 </div>
                 <p>${product.price}</p>
-                <span class="product-total-price">Total ${(product.quantity*product.price)}</span>
+                <span class="product-total-price">Total ${(product.quantity*product.price).toFixed(2)}</span>
                 <button class="delete-checkout-product">Delete</button>
             </div>
                 `

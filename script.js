@@ -180,6 +180,7 @@ axios(url).then(data=>{
     const addToWishlist=productItems.querySelectorAll(".wish")
     addToWishlist.forEach(icon=>{
          icon.addEventListener("click",(e)=>{
+         icon.classList.add="heart-active"
          const card=e.target.closest(".card1")
          const product={
     id:card.dataset.id,
@@ -188,7 +189,6 @@ axios(url).then(data=>{
     price:parseFloat(card.querySelector("p").innerText.replace("$",'')),
     quantity: 1
 }
-console.log(product);
 addToWishlist1(product)   
 })   
 })
@@ -198,27 +198,94 @@ const lessButton=document.getElementById("less-products")
     moreButton.addEventListener("click",()=>{
         axios(url).then(data=>{
             const productItems=document.getElementById("cart-items")
+            let say=0
             productItems.innerHTML=``
             data.data.forEach(product => {
                
                     const card=document.createElement("div")
                     card.innerHTML=`
-                    <div class="card1">
+                    <div class="card1" data-id="${product.id}">
+                    <div class="product-image">
                     <img src=${product.image} alt="">
-                    <div>
-                        <p>${product.name}</p>
+                    <button class="go-to-product">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <h3>${product.name}</h3>
                         <i class="fa-regular fa-heart wish"></i>
                      </div> 
                      <p>$${product.price}</p>                   
                      </div>
                     </div>
                     `
-                    productItems.appendChild(card)  
+                    productItems.appendChild(card) 
+                    const cardViewButtons=productItems.getElementsByClassName("go-to-product")
+          
+                    const modal=document.createElement("div")
+                    cardViewButtons[say].addEventListener("click",(e)=>{
+                        e.preventDefault()
+                        modal.className="view-card"
+                        modal.innerHTML=``
+                        modal.innerHTML=`
+                    <div class="products-images">
+                        <img src=${product.image} alt="">
+                        <img src=${product.image} alt="">
+                        <img src=${product.image} alt="">
+                    </div>
+                    <div class="product-slider">
+                        <div class="product-slides">
+                            <div class="product-slide"
+                                style="background-image: url(${product.image});">
+                            <div class="product-slide"
+                                style="background-image: url(${product.image});">
+                            </div>
+                            <div class="product-slide"
+                                style="background-image: url(${product.image});">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="product-infos" data-id="${product.id}">
+                    <i class="fa-solid fa-x close-card"></i>
+                            <h1>${product.image}</h1>
+                            <h2>${product.name}</h2>
+                            <h3>${product.name}</h3>
+                            <p>$${product.price}</p>
+                            <div class="buttons1"><button>-</button><span>1</span><button>+</button></div>
+                            <button class="add-to-card">ADD TO CARD</button>
+                    </div>
+                        `
+                        document.body.appendChild(modal)
+                        const addToCardButton=document.getElementsByClassName("add-to-card")
+                        const closeButton=document.getElementsByClassName("close-card")
+                        closeButton[0].addEventListener("click",(e)=>{
+                            e.preventDefault()
+                            const parentElement=e.target.parentElement.parentElement
+                            parentElement.remove()
+                        })
+                        addBasket(addToCardButton)
+                    })   
+                    say++
             }); 
+            const addToWishlist=productItems.querySelectorAll(".wish")
+            addToWishlist.forEach(icon=>{
+                 icon.addEventListener("click",(e)=>{
+                 icon.classList.add="heart-active"
+                 const card=e.target.closest(".card1")
+                 const product={
+            id:card.dataset.id,
+            image:card.querySelector("img").src,
+            title:card.querySelector("h3").innerText,
+            price:parseFloat(card.querySelector("p").innerText.replace("$",'')),
+            quantity: 1
+        }
+       
+        addToWishlist1(product)   
+        })   
         })
-        moreButton.style.display="none"
-        lessButton.style.display="block"
-    })
+        });    
+    lessButton.style.display="block"
+    moreButton.style.display="none"
+})
     lessButton.addEventListener("click",()=>{
         axios(url).then(data=>{
             const productItems=document.getElementById("cart-items")
@@ -229,21 +296,85 @@ const lessButton=document.getElementById("less-products")
                 if (say<=10) {
                     const card=document.createElement("div")
                     card.innerHTML=`
-                    <div class="card1">
+                    <div class="card1" data-id="${product.id}">
+                    <div class="product-image">
                     <img src=${product.image} alt="">
-                    <div>
-                        <p>${product.name}</p>
+                    <button class="go-to-product">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <h3>${product.name}</h3>
                         <i class="fa-regular fa-heart wish"></i>
                      </div> 
                      <p>$${product.price}</p>                   
                      </div>
                     </div>
                     `
-                    say++
                     productItems.appendChild(card)  
+                    const cardViewButtons=productItems.getElementsByClassName("go-to-product")
+          
+                    const modal=document.createElement("div")
+                    cardViewButtons[say].addEventListener("click",(e)=>{
+                        e.preventDefault()
+                        modal.className="view-card"
+                        modal.innerHTML=``
+                        modal.innerHTML=`
+                    <div class="products-images">
+                        <img src=${product.image} alt="">
+                        <img src=${product.image} alt="">
+                        <img src=${product.image} alt="">
+                    </div>
+                    <div class="product-slider">
+                        <div class="product-slides">
+                            <div class="product-slide"
+                                style="background-image: url(${product.image});">
+                            <div class="product-slide"
+                                style="background-image: url(${product.image});">
+                            </div>
+                            <div class="product-slide"
+                                style="background-image: url(${product.image});">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="product-infos" data-id="${product.id}">
+                    <i class="fa-solid fa-x close-card"></i>
+                            <h1>${product.image}</h1>
+                            <h2>${product.name}</h2>
+                            <h3>${product.name}</h3>
+                            <p>$${product.price}</p>
+                            <div class="buttons1"><button>-</button><span>1</span><button>+</button></div>
+                            <button class="add-to-card">ADD TO CARD</button>
+                    </div>
+                        `
+                        document.body.appendChild(modal)
+                        const addToCardButton=document.getElementsByClassName("add-to-card")
+                        const closeButton=document.getElementsByClassName("close-card")
+                        closeButton[0].addEventListener("click",(e)=>{
+                            e.preventDefault()
+                            const parentElement=e.target.parentElement.parentElement
+                            parentElement.remove()
+                        })
+                        addBasket(addToCardButton)
+                    })
+                    say++
                 }
-            });    
-            
+                const addToWishlist=productItems.querySelectorAll(".wish")
+                addToWishlist.forEach(icon=>{
+                     icon.addEventListener("click",(e)=>{
+                     icon.classList.add="heart-active"
+                     const card=e.target.closest(".card1")
+                     const product={
+                id:card.dataset.id,
+                image:card.querySelector("img").src,
+                title:card.querySelector("h3").innerText,
+                price:parseFloat(card.querySelector("p").innerText.replace("$",'')),
+                quantity: 1
+            }
+           
+            addToWishlist1(product)   
+            })   
+            })
+            });               
         })
         lessButton.style.display="none"
         moreButton.style.display="block"
@@ -260,10 +391,13 @@ const lessButton=document.getElementById("less-products")
                 if (say<=10) {
                     const card=document.createElement("div")
                     card.innerHTML=`
-                    <div class="card1">
+                    <div class="card1" data-id="${product.id}">
+                    <div class="product-image">
                     <img src=${product.image} alt="">
-                    <div>
-                        <p>${product.name}</p>
+                    <button class="go-to-product">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <h3>${product.name}</h3>
                         <i class="fa-regular fa-heart wish"></i>
                      </div> 
                      <p>$${product.price}</p>                   
@@ -286,10 +420,13 @@ const lessButton=document.getElementById("less-products")
                 if (product.type==="women") {
                     const card=document.createElement("div")
                     card.innerHTML=`
-                    <div class="card1">
+                    <div class="card1" data-id="${product.id}">
+                    <div class="product-image">
                     <img src=${product.image} alt="">
-                    <div>
-                        <p>${product.name}</p>
+                    <button class="go-to-product">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <h3>${product.name}</h3>
                         <i class="fa-regular fa-heart wish"></i>
                      </div> 
                      <p>$${product.price}</p>                   
@@ -311,10 +448,13 @@ const lessButton=document.getElementById("less-products")
                 if (product.type==="men") {
                     const card=document.createElement("div")
                     card.innerHTML=`
-                    <div class="card1">
+                    <div class="card1" data-id="${product.id}">
+                    <div class="product-image">
                     <img src=${product.image} alt="">
-                    <div>
-                        <p>${product.name}</p>
+                    <button class="go-to-product">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <h3>${product.name}</h3>
                         <i class="fa-regular fa-heart wish"></i>
                      </div> 
                      <p>$${product.price}</p>                   
@@ -336,10 +476,13 @@ const lessButton=document.getElementById("less-products")
                 if (product.type==="shoes") {
                     const card=document.createElement("div")
                     card.innerHTML=`
-                    <div class="card1">
+                    <div class="card1" data-id="${product.id}">
+                    <div class="product-image">
                     <img src=${product.image} alt="">
-                    <div>
-                        <p>${product.name}</p>
+                    <button class="go-to-product">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <h3>${product.name}</h3>
                         <i class="fa-regular fa-heart wish"></i>
                      </div> 
                      <p>$${product.price}</p>                   
@@ -361,10 +504,13 @@ const lessButton=document.getElementById("less-products")
                 if (product.type==="bag") {
                     const card=document.createElement("div")
                     card.innerHTML=`
-                    <div class="card1">
+                    <div class="card1" data-id="${product.id}">
+                    <div class="product-image">
                     <img src=${product.image} alt="">
-                    <div>
-                        <p>${product.name}</p>
+                    <button class="go-to-product">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <h3>${product.name}</h3>
                         <i class="fa-regular fa-heart wish"></i>
                      </div> 
                      <p>$${product.price}</p>                   
@@ -386,10 +532,13 @@ const lessButton=document.getElementById("less-products")
                 if (product.type==="watch") {
                     const card=document.createElement("div")
                     card.innerHTML=`
-                    <div class="card1">
+                    <div class="card1" data-id="${product.id}">
+                    <div class="product-image">
                     <img src=${product.image} alt="">
-                    <div>
-                        <p>${product.name}</p>
+                    <button class="go-to-product">Quick View</button>
+                    </div>
+                    <div class="info">
+                        <h3>${product.name}</h3>
                         <i class="fa-regular fa-heart wish"></i>
                      </div> 
                      <p>$${product.price}</p>                   
